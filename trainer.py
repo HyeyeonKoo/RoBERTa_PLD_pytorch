@@ -73,6 +73,7 @@ class RoBERTaWithPLDTrainer():
 
         for i , data in enumerate(data_loader):
             data = {k: v.to(self.device) for k, v in data.items()}
+            
             current_lr = self.schedule.get_last_lr()[0]
             output = self.model.forward(data["input"], data["segment"], pld_step, trainable)
             loss = self.loss_fn(output.transpose(1, 2), data["label"])
@@ -90,6 +91,8 @@ class RoBERTaWithPLDTrainer():
                     "lr" : current_lr,
                     "loss" : loss.item(),
                 })
+                
+            data = {k: v.to("cpu") for k, v in data.items()}
 
         
     def save(self, epoch, path):
