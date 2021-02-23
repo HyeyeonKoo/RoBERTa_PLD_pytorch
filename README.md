@@ -12,7 +12,7 @@
 
 - pytorch ==1.7.1
 
-  ※ I test this code at pytorch 1.7.1. It could possible that this code run on other pytorch version.
+※ I test this code at pytorch 1.7.1. It could possible that this code run on other pytorch version.
 
 
 
